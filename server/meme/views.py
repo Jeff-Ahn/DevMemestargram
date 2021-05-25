@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Meme
+from .serializers import MemeSerializer
 
-# Create your views here.
+
+class MemeViewset(viewsets.ModelViewSet):
+    queryset = Meme.objects.all()
+    serializer_class = MemeSerializer
