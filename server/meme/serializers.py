@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Meme
-from django.db import transaction
 
 
 class MemeSerializer(serializers.ModelSerializer):
@@ -8,10 +7,9 @@ class MemeSerializer(serializers.ModelSerializer):
         model = Meme
         fields = (
             "id",
-            "image_access_path",
+            "image",
             "recommended",
             "tags",
             "description",
-            "created_date",
-            "image",
+            "created_at",
         )
