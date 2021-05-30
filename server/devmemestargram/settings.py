@@ -21,10 +21,15 @@ ALLOWED_HOSTS = ["*"]
 
 # Django REST Framework
 REST_FRAMEWORK = {
-    "DEFAULT_RENDERER_CLASSES": [
+    "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
-    ]
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
 }
 
 # Application definition
@@ -35,11 +40,27 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
     "meme",
     "tag",
     "storages",
+    # django-rest-framework
+    "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
+    # dj-rest-auth
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    # django-allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.kakao",
+    "allauth.socialaccount.providers.github",
+    "allauth.socialaccount.providers.google",
 ]
+
+SITE_ID = 1
+
+AUTH_USER_MODEL = "accounts.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
