@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Meme
+from .utils import delete_image
 
 
 class MemeSerializer(serializers.ModelSerializer):
@@ -13,3 +14,9 @@ class MemeSerializer(serializers.ModelSerializer):
             "description",
             "created_at",
         )
+
+    def update(self, instance, validated_data):
+        image = instance.image
+        delete_image(image.name)
+
+        return super().update(instance, validated_data)
