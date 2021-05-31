@@ -14,6 +14,9 @@ class Meme(models.Model):
     created_at = models.DateTimeField(
         verbose_name="created_at", auto_now_add=True, editable=False
     )
+    owner = models.ForeignKey(
+        "accounts.User", on_delete=models.CASCADE, related_name="owner"
+    )
 
     class Meta:
         ordering = ["recommended"]
