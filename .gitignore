@@ -3,3 +3,7 @@ db.sqlite3
 .idea
 __pycache__
 .env
+server/accounts/migrations/**
+server/meme/migrations/**
+server/tag/migrations/**
+!__init__.py
