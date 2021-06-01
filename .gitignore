@@ -1,3 +1,5 @@
+## server
+
 myvenv
 db.sqlite3
 .idea
@@ -7,3 +9,27 @@ server/accounts/migrations/**
 server/meme/migrations/**
 server/tag/migrations/**
 !__init__.py
+
+
+## client
+
+# dependencies
+client/node_modules
+client/.pnp
+client/.pnp.js
+
+# testing
+client/coverage
+
+# production
+client/build
+
+# misc
+client/.DS_Store
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
