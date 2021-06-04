@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     # 3rd party apps
     "storages",
-    # "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
     "dj_rest_auth",
@@ -68,7 +67,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 SITE_ID = 1
 
 MIDDLEWARE = [
-    # "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -78,8 +76,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
-# CORS_ORIGIN_WHITELIST = ["localhost:3000"]
 ROOT_URLCONF = "devmemestargram.urls"
 
 TEMPLATES = [
