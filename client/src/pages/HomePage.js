@@ -1,27 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useMutation } from 'react-query';
 import GlobalLayout from '../components/GlobalLayout';
 import authApi from '../lib/api/auth';
+import userApi from '../lib/api/user';
+import useUser from '../hooks/useUser';
 
 function HomePage() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUserData] = useUser();
+
+  const { mutate } = useMutation(authApi.verifyToken, {
+    onSuccess: async () => {
+      const { email } = await userApi.get();
+      setUserData({ email });
+    },
+    onError: error => {
+      console.error(error);
+    },
+  });
+
+  const checkUserIsLogin = useCallback(
+    token => {
+      mutate(token);
+    },
+    [mutate],
+  );
+
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken') || null;
-
-    const verifyToken = async token => {
-      const result = await authApi.verifyToken(token);
-      console.log(result);
-    };
-
-    if (accessToken) {
-      verifyToken(accessToken);
-      setIsLogin(true);
-    }
-  });
+    checkUserIsLogin(accessToken);
+  }, [checkUserIsLogin]);
 
   return (
     <GlobalLayout>
-      {!isLogin && <div>Home user not logined</div>}
-      {isLogin && <div>Home user logined</div>}
+      {user.isLogin ? <p>hello {user.email}</p> : <p>hello annoymous user</p>}
     </GlobalLayout>
   );
 }

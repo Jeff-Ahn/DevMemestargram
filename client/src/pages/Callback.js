@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useMutation } from 'react-query';
 import GlobalLayout from '../components/GlobalLayout';
-import useLoader from '../components/hooks/useLoader';
+import useLoader from '../hooks/useLoader';
 import { palette } from '../lib/styles/palette';
 import authApi from '../lib/api/auth';
 
