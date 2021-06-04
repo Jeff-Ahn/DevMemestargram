@@ -30,21 +30,21 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "accounts",
-    "tag",
-    "meme",
+    # 3rd party apps
     "storages",
-    # django-rest-framework
+    # "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt.token_blacklist",
-    # dj-rest-auth
     "dj_rest_auth",
     "dj_rest_auth.registration",
-    # django-allauth
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.github",
+    # Local apps
+    "accounts",
+    "tag",
+    "meme",
 ]
 
 # Django REST Framework
@@ -68,6 +68,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 SITE_ID = 1
 
 MIDDLEWARE = [
+    # "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -77,6 +78,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+# CORS_ORIGIN_WHITELIST = ["localhost:3000"]
 ROOT_URLCONF = "devmemestargram.urls"
 
 TEMPLATES = [
@@ -189,3 +192,5 @@ SIMPLE_JWT = {
 # Github OAuth
 SOCIAL_AUTH_GITHUB_CLIENT_ID = env("SOCIAL_AUTH_GITHUB_CLIENT_ID")
 SOCIAL_AUTH_GITHUB_SECRET = env("SOCIAL_AUTH_GITHUB_SECRET")
+
+CORS_ALLOW_CREDENTIALS = True

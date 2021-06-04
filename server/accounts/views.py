@@ -11,6 +11,8 @@ from allauth.socialaccount.providers.github import views as github_view
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 import requests
 from django.http import JsonResponse
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -19,20 +21,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 BASE_URL = "http://localhost:8000/"
-GITHUB_CALLBACK_URI = BASE_URL + "accounts/github/callback/"
+GITHUB_CALLBACK_URI = "http://localhost:3000/callback/"
 
 
-def github_login(request):
-    client_id = settings.SOCIAL_AUTH_GITHUB_CLIENT_ID
-    return redirect(
-        f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={GITHUB_CALLBACK_URI}"
-    )
-
-
+@api_view(["POST"])
+@permission_classes([AllowAny])
 def github_callback(request):
     client_id = settings.SOCIAL_AUTH_GITHUB_CLIENT_ID
     client_secret = settings.SOCIAL_AUTH_GITHUB_SECRET
-    code = request.GET.get("code")
+    code = request.data["code"]
     """
     Access Token Request
     """
@@ -48,7 +45,6 @@ def github_callback(request):
     """
     Email Request
     """
-    breakpoint()
     user_req = requests.get(
         f"https://api.github.com/user",
         headers={"Authorization": f"Bearer {access_token}"},
