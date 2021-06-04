@@ -1,4 +1,5 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
@@ -23,21 +24,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <MantineProvider
-        theme={{
-          fontFamily: 'sans-serif',
-          primaryColor: 'teal',
-        }}
-      >
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/callback" component={Callback} />
-        </Switch>
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <MantineProvider
+          theme={{
+            fontFamily: 'sans-serif',
+            primaryColor: 'teal',
+          }}
+        >
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/callback" component={Callback} />
+          </Switch>
+        </MantineProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   );
 }
