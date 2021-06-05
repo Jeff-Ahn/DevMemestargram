@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { LoadingOverlay } from '@mantine/core';
+import Loader from '../components/Loader/Loader';
 
 function useLoader(defaultVisible = false) {
   const [visible, setVisible] = useState(defaultVisible);
-  const Loader = LoadingOverlay;
 
   return [Loader, visible, setVisible];
 }
