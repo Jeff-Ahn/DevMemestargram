@@ -5,7 +5,7 @@ import { palette } from '../../lib/styles/palette';
 import media from '../../lib/styles/media';
 
 export const HeaderBlock = styled.div`
-  margin: 2rem 8rem;
+  margin: 2rem 0;
   height: 6rem;
   display: flex;
   align-items: center;

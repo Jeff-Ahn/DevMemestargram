@@ -38,7 +38,10 @@ function Header() {
             Sign in
           </Button>
         ) : (
-          <Menu control={<Avatar color="teal" radius="xl" />}>
+          <Menu
+            menuPosition={{ top: 35, left: 20 }}
+            control={<Avatar color="teal" radius="xl" />}
+          >
             <MenuItem disabled>
               <Text>{user.email}</Text>
             </MenuItem>
