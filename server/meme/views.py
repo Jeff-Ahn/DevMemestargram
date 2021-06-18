@@ -11,7 +11,7 @@ class MemeViewset(viewsets.ModelViewSet):
     serializer_class = MemeSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
-    http_methods = ["get", "post", "put"]
+    http_methods = ["get", "post", "put", "delete"]
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

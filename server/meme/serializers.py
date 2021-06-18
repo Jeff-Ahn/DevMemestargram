@@ -11,6 +11,7 @@ class MemeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         owner = self.context["request"].user
         tags = validated_data["tags"]
+        breakpoint()
         new_tags = tags
 
         """
