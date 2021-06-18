@@ -4,7 +4,6 @@ from .models import User
 from allauth.socialaccount.models import SocialAccount
 from rest_framework import status
 from json.decoder import JSONDecodeError
-from django.shortcuts import redirect
 from django.conf import settings
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.github import views as github_view
@@ -53,7 +52,6 @@ def github_callback(request):
     error = user_json.get("error")
     if error is not None:
         raise JSONDecodeError(error)
-    # print(user_json)
     email = user_json.get("email")
     """
     Signup or Signin Request
@@ -112,3 +110,18 @@ class GithubLogin(SocialLoginView):
     adapter_class = github_view.GitHubOAuth2Adapter
     callback_url = GITHUB_CALLBACK_URI
     client_class = OAuth2Client
+
+
+@api_view(["GET"])
+@permission_classes([AllowAny])
+def get_user_email(request, pk):
+    try:
+        email = User.objects.get(pk=pk).email
+        return JsonResponse(
+            {"email": email},
+            status=status.HTTP_200_OK,
+        )
+    except User.DoesNotExist:
+        return JsonResponse(
+            {"err_msg": "Can't find the user"}, status=status.HTTP_404_NOT_FOUND
+        )
