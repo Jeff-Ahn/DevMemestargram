@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@mantine/core';
 import { UploadIcon } from '../../static/svg';
 
 function UploadButton() {
   return (
-    <Button component="a" href="/upload" leftIcon={<UploadIcon />}>
-      Upload New Meme
-    </Button>
+    <Link to="/upload">
+      <Button leftIcon={<UploadIcon />}>Upload New Meme</Button>
+    </Link>
   );
 }
 
