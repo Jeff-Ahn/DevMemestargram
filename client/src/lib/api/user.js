@@ -12,6 +12,13 @@ const userApi = {
 
     return res.data;
   },
+  getUserProfileById: async id => {
+    const res = await apiClient.get(`/accounts/${id}/`);
+
+    if (res.status !== 200) throw res;
+
+    return res.data;
+  },
   logout: async () => {
     const res = await apiClient.post(
       '/accounts/logout/',

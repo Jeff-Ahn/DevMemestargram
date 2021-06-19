@@ -1,16 +1,24 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useCallback } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import GlobalLayout from '../components/GlobalLayout';
-import authApi from '../lib/api/auth';
-import userApi from '../lib/api/user';
+import Memes from '../components/Memes';
 import useUser from '../hooks/useUser';
+import useLoader from '../hooks/useLoader';
+import authApi from '../lib/api/auth';
+import memeApi from '../lib/api/meme';
+import userApi from '../lib/api/user';
+import * as S from './styles';
 
 function HomePage() {
   const [user, setUserData] = useUser();
+  const [Loader, visible] = useLoader(true);
+  const { isLoading, data, isStale } = useQuery('memes', memeApi.getAllMemes);
 
   const { mutate } = useMutation(authApi.verifyToken, {
     onSuccess: async () => {
       const { email } = await userApi.get();
+
       setUserData({ email });
     },
     onError: error => {
@@ -26,13 +34,17 @@ function HomePage() {
   );
 
   useEffect(() => {
+    memeApi.getAllMemes();
     const accessToken = localStorage.getItem('accessToken') || null;
     checkUserIsLogin(accessToken);
   }, [checkUserIsLogin]);
 
   return (
     <GlobalLayout>
-      {user.isLogin ? <p>hello {user.email}</p> : <p>hello annoymous user</p>}
+      <S.HomeLayout>
+        {isLoading && <Loader visible={visible} />}
+        {isStale && <Memes memes={data} />}
+      </S.HomeLayout>
     </GlobalLayout>
   );
 }

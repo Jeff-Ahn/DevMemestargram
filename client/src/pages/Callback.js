@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useMutation } from 'react-query';
 import GlobalLayout from '../components/GlobalLayout';
 import useLoader from '../hooks/useLoader';
-import { palette } from '../lib/styles/palette';
 import authApi from '../lib/api/auth';
 
 function Callback({ location, history }) {
@@ -28,16 +27,7 @@ function Callback({ location, history }) {
   }, [location, history]);
 
   return (
-    <GlobalLayout
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: palette.gray2,
-      }}
-    >
+    <GlobalLayout>
       {mutation.isLoading && <Loader visible={visible} />}
     </GlobalLayout>
   );
