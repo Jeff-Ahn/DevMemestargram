@@ -3,6 +3,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import GlobalLayout from '../components/GlobalLayout';
 import Memes from '../components/Memes';
+import Nav from '../components/Nav';
 import useUser from '../hooks/useUser';
 import useLoader from '../hooks/useLoader';
 import authApi from '../lib/api/auth';
@@ -43,7 +44,11 @@ function HomePage() {
     <GlobalLayout>
       <S.HomeLayout>
         {isLoading && <Loader visible={visible} />}
-        {isStale && <Memes memes={data} />}
+        {isStale && (
+          <Nav>
+            <Memes memes={data} />
+          </Nav>
+        )}
       </S.HomeLayout>
     </GlobalLayout>
   );
