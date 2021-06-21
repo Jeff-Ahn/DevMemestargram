@@ -10,7 +10,7 @@ const tagApi = {
   },
   createNewTag: async tagName => {
     const res = await apiClient.post(
-      `/tag/`,
+      '/tag/',
       {
         tag_name: tagName,
       },
@@ -18,12 +18,20 @@ const tagApi = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
+        'Content-Type': 'multipart/form-data',
       },
     );
 
     if (res.status !== 201) throw res;
 
     return res;
+  },
+  getTagByTagName: async tagName => {
+    const res = await apiClient.get(`/tag/${tagName}/get_tag/`);
+
+    if (res.status !== 200) throw res;
+
+    return res.data;
   },
 };
 

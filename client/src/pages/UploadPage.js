@@ -6,24 +6,56 @@ import GlobalLayout from '../components/GlobalLayout';
 import * as S from './styles';
 import FileDragDrop from '../components/FileDragDrop';
 import useUser from '../hooks/useUser';
+import memeApi from '../lib/api/meme';
+import tagApi from '../lib/api/tag';
 
-// mantine hook useForm 활용할 것!
 function UploadPage() {
   const [user] = useUser();
   const [files, setFiles] = useState([]);
 
   const history = useHistory();
-  console.log(user);
+
   const form = useForm({
     initialValues: {
       files,
       content: '',
       tags: '',
-      owner: user.email,
     },
   });
 
+  const postNewMeme = values => {
+    const { content, files: _files, tags } = values;
+    const file = _files[0];
+    const tagNames = tags.replace(/(\s*)/g, '').split('#').slice(1);
+
+    const getTagsId = async tagNames => {
+      const requests = tagNames.map(tagName => tagApi.getTagByTagName(tagName));
+      const data = await Promise.all(requests);
+
+      return data;
+    };
+
+    const tagArr = getTagsId(tagNames);
+    tagArr.then(res => {
+      const result = res.map(tag => tag.id);
+      const data = new FormData();
+      data.append('image', file);
+      data.append('description', content);
+      data.append('tags', [result]);
+      data.append('recommended', 0);
+
+      memeApi
+        .postNewMeme(data)
+        .then(res => {
+          alert('Success to add a new Meme !');
+          history.push(`/meme/${res.data}`);
+        })
+        .catch(e => console.error(e));
+    });
+  };
+
   const setFileFormHandler = _files => form.setFieldValue('files', _files);
+
   useEffect(() => {
     if (!user.isLogin) {
       alert('Please Sign in first to upload a new meme !');
@@ -33,7 +65,7 @@ function UploadPage() {
   return (
     <GlobalLayout>
       <S.UploadPageBlock shadow="sm">
-        <form onSubmit={form.onSubmit(values => console.log(values))}>
+        <form onSubmit={form.onSubmit(postNewMeme)}>
           <h1>Upload New Meme !</h1>
           <FileDragDrop
             files={files}

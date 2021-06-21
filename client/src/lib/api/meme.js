@@ -15,6 +15,16 @@ const memeApi = {
 
     return res.data;
   },
+  postNewMeme: async data => {
+    const res = await apiClient.post('/meme/', data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
+
+    console.log(res);
+    return res.data;
+  },
 };
 
 export default memeApi;
