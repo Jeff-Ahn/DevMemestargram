@@ -1,0 +1,19 @@
+{
+  "extends": ["airbnb", "plugin:prettier/recommended", "plugin:react-hooks/recommended"],
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "ignorePatterns": ["node_modules/"],
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "prettier/prettier": [2, {
+      "endOfLine": "auto"
+    }],
+    "import/prefer-default-export": 0,
+    "react/prop-types": 0,
+    "no-shadow": 1
+  }
+}
