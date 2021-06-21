@@ -6,4 +6,6 @@ router = routers.DefaultRouter()
 
 router.register("tag", viewset=views.TagViewset, basename="tag")
 
-urlpatterns = [path("", include(router.urls))]
+urlpatterns = [
+    path("", include(router.urls)),
+]
