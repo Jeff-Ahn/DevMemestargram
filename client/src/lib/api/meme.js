@@ -22,7 +22,8 @@ const memeApi = {
       },
     });
 
-    console.log(res);
+    if (res.status !== 201) throw res;
+
     return res.data;
   },
 };

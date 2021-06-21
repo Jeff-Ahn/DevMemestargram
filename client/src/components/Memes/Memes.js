@@ -3,7 +3,6 @@ import { Container, Grid } from '@mantine/core';
 import Meme from './Meme';
 
 function Memes({ memes }) {
-  console.log(memes);
   return (
     <Container style={{ width: '100%' }}>
       <Grid>

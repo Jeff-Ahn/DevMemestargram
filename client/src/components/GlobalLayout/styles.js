@@ -5,7 +5,6 @@ export const GlobalLayoutBlock = styled.div`
   width: 1728px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid black;
 
   ${media.xxlarge} {
     width: 1200px;

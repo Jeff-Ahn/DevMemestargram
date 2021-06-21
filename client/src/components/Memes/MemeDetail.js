@@ -1,11 +1,9 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Image, Text, Avatar, ActionIcon } from '@mantine/core';
 import Tags from '../Tags';
 import * as S from './styles';
 import useTags from '../../hooks/useTags';
 import useProfile from '../../hooks/useProfile';
-import GlobalLayout from '../GlobalLayout/GlobalLayout';
 import useLoader from '../../hooks/useLoader';
 import { StarIcon } from '../../static/svg';
 
@@ -17,17 +15,17 @@ function MemeDetail({
   recommended,
   tags,
 }) {
-  console.log(owner);
   const [userProfile, isLoading, isSuccess] = useProfile(owner);
   const [tagsInfo] = useTags(tags);
   const [Loader] = useLoader();
-  console.log(userProfile);
+
   if (isLoading)
     return (
       <S.MemeDetailBlock shadow="sm">
         <Loader visible={isLoading} />
       </S.MemeDetailBlock>
     );
+
   if (isSuccess) {
     return (
       <S.MemeDetailBlock shadow="sm">
