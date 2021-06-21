@@ -5,6 +5,7 @@ from .utils import delete_image
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from tag.models import Tag
+import json
 
 
 class MemeViewset(viewsets.ModelViewSet):
@@ -30,9 +31,8 @@ class MemeViewset(viewsets.ModelViewSet):
             )
             for tag in tags:
                 new_meme.tags.add(Tag.objects.get(pk=tag))
-
             new_meme.save()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response(data=str(new_meme.id), status=status.HTTP_201_CREATED)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
