@@ -48,7 +48,8 @@ function UploadPage() {
         .postNewMeme(data)
         .then(res => {
           alert('Success to add a new Meme !');
-          history.push(`/meme/${res.data}`);
+          console.log(res);
+          history.push(`/meme/${res}`);
         })
         .catch(e => console.error(e));
     });
