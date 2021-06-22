@@ -2,21 +2,21 @@ import apiClient from './apiClient';
 
 const authApi = {
   verifyToken: async accessToken => {
-    const res = await apiClient.post('accounts/token/verify/', {
+    const res = await apiClient.post('/api/accounts/token/verify/', {
       token: accessToken,
     });
 
     return res;
   },
   refreshToken: async token => {
-    const res = await apiClient.post('accounts/token/refresh/', {
+    const res = await apiClient.post('/api/accounts/token/refresh/', {
       refresh: token,
     });
 
     return res;
   },
   getToken: async ({ code }) => {
-    const githubBaseUrl = '/accounts/github/callback/';
+    const githubBaseUrl = '/api/accounts/github/callback/';
     const res = await apiClient.post(githubBaseUrl, {
       provider: 'GITHUB',
       code: code || '',

@@ -19,7 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-BASE_URL = "http://localhost:8000/"
+BASE_URL = "http://localhost:8000/api/"
 GITHUB_CALLBACK_URI = "http://localhost:3000/callback/"
 
 

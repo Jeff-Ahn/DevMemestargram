@@ -2,7 +2,7 @@ import apiClient from './apiClient';
 
 const userApi = {
   get: async () => {
-    const res = await apiClient.get('/accounts/user/', {
+    const res = await apiClient.get('/api/accounts/user/', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
@@ -13,7 +13,7 @@ const userApi = {
     return res.data;
   },
   getUserProfileById: async id => {
-    const res = await apiClient.get(`/accounts/${id}/`);
+    const res = await apiClient.get(`/api/accounts/${id}/`);
 
     if (res.status !== 200) throw res;
 
@@ -21,7 +21,7 @@ const userApi = {
   },
   logout: async () => {
     const res = await apiClient.post(
-      '/accounts/logout/',
+      '/api/accounts/logout/',
       {
         refresh: localStorage.getItem('refreshToken'),
       },

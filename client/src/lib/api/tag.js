@@ -2,7 +2,7 @@ import apiClient from './apiClient';
 
 const tagApi = {
   getTagNameById: async id => {
-    const res = await apiClient.get(`/tag/${id}/`);
+    const res = await apiClient.get(`/api/tag/${id}/`);
 
     if (res.status !== 200) throw res;
 
@@ -10,7 +10,7 @@ const tagApi = {
   },
   createNewTag: async tagName => {
     const res = await apiClient.post(
-      '/tag/',
+      '/api/tag/',
       {
         tag_name: tagName,
       },
@@ -27,7 +27,7 @@ const tagApi = {
     return res;
   },
   getTagByTagName: async tagName => {
-    const res = await apiClient.get(`/tag/${tagName}/get_tag/`);
+    const res = await apiClient.get(`/api/tag/${tagName}/get_tag/`);
 
     if (res.status !== 200) throw res;
 
