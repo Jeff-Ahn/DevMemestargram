@@ -2,8 +2,10 @@
 개발짤을 찾고자 하는 개발자들을 위한 웹사이트
 <br><br>
 ## 배포 Link :exclamation:
-[http://13.209.85.176/](http://13.209.85.176/) 이후에 도메인을 구입해 변경할 예정입니다.
-<br><br>
+~~[http://13.209.85.176/](http://13.209.85.176/) 이후에 도메인을 구입해 변경할 예정입니다.~~
+<br/>
+현재 서버를 내린 상태입니다.
+<br/>
 ## 기술스택 :hammer:
 ```
 Frontend: React.js, Redux.js, Styled-components, react-query
