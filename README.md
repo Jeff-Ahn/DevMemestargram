@@ -1,6 +1,23 @@
 ## 프로젝트 소개 :ok_woman:
 개발짤을 찾고자 하는 개발자들을 위한 웹사이트
 <br><br>
+
+## 프로젝트 구조
+![image](https://user-images.githubusercontent.com/64527451/139600589-30dafa63-34e1-4109-bafb-804bde838eb4.png)
+
+## 구현 기능
+1. 로그인 (OAuth 사용)
+개발짤을 이용하는 사용자를 고려하여 GitHub OAuth를 사용하여 로그인을 구현했습니다.<br>
+![image](https://user-images.githubusercontent.com/64527451/139600765-90dc1bfc-5314-440f-8dcb-064a9484cf18.png)<br>
+
+2. Meme Create
+짤 등록 페이지 - Drag&Drop으로 이미지를 올리고, 짤에 대한 제목과 설명을 입력하여 등록합니다.<br>
+![image](https://user-images.githubusercontent.com/64527451/139600673-3ccd35d9-765a-4bf1-8630-4188e9cdb0a1.png)<br>
+
+3. Meme Read
+짤 상세페이지 - 등록된 개발짤을 자세히 볼 수 있는 페이지, 개발짤을 등록한 사용자와 추천수, 등록날짜, 관련된 tag들, 설명을 볼 수 있습니다.<br>
+![image](https://user-images.githubusercontent.com/64527451/139600702-a0a301d1-b918-4328-bf8b-aa849375a366.png)<br>
+
 ## 배포 Link :exclamation:
 ~~[http://13.209.85.176/](http://13.209.85.176/) 이후에 도메인을 구입해 변경할 예정입니다.~~
 <br/>
